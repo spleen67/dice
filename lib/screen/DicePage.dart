@@ -12,14 +12,18 @@ class _DicePageState extends State<DicePage> {
       child: Row(
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: FlatButton(
+              onPressed: () {
+                print('DE2');
+              },
               child: Image.asset('images/dice1.png'),
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: FlatButton(
+              onPressed: () {
+                print('DE1');
+              },
               child: Image.asset('images/dice2.png'),
             ),
           )
