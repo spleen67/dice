@@ -11,7 +11,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dicee'),
+        title: Text('ToSs'),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          print("profile");
+        },
+        icon: Icon(Icons.account_circle),
+        label: Text("Profile"),
       ),
       backgroundColor: Colors.red,
       body: DicePage(),
