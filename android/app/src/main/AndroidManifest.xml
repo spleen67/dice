@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lancemant_de">
+    package="com.example.toss">
    <application
-        android:label="lancemant_de"
+        android:label="toss"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

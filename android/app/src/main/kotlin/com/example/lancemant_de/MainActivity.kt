@@ -1,4 +1,4 @@
-package com.example.lancemant_de
+package com.example.toss
 
 import io.flutter.embedding.android.FlutterActivity
 

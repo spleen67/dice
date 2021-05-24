@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'package:toss/Lancement.dart';
+import 'package:toss/IconeResultat.dart';
+
+Lancement jet = Lancement();
+IconeResultat iconeRes = IconeResultat();
 
 // ignore: must_be_immutable
 class DicePage extends StatefulWidget {
@@ -11,38 +15,9 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 0;
   int rightDiceNumber = 0;
-  bool isSwitched = false, checked = false, face = false, reinit = false;
-  int restDiv = 0;
-  int total = 0;
-  IconData ok = IconData(58080, fontFamily: 'MaterialIcons'); //mood_bad_rounded
-  Color couleurIcone = Colors.red;
-
-  void hasard() {
-    setState(
-      () {
-        checked = false; // paire
-        rightDiceNumber = Random().nextInt(6) + 1;
-        leftDiceNumber = Random().nextInt(6) + 1;
-        total = rightDiceNumber + leftDiceNumber;
-        restDiv = total % 2;
-        if (restDiv != 0) {
-          checked = true;
-          // resultat paire
-        }
-        if ((isSwitched && checked) || (!isSwitched && !checked)) {
-          // Si resultat OK, choix correspond a tirage
-          face = true;
-          ok = IconData(58080, fontFamily: 'MaterialIcons');
-          couleurIcone = Colors.green;
-        } else {
-          // Si resultat POK, choix correspond pas au tirage
-          face = false;
-          ok = IconData(58079, fontFamily: 'MaterialIcons');
-          couleurIcone = Colors.red.shade50;
-        }
-      },
-    );
-  }
+  int resultat = 0;
+  bool isSwitched = false; // false = paire, true = impaire
+  bool checked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +42,7 @@ class _DicePageState extends State<DicePage> {
                   onChanged: (value) {
                     setState(() {
                       isSwitched = value;
-                      print(isSwitched);
+                      print('changement $isSwitched');
                     });
                   },
                   activeTrackColor: Colors.yellow,
@@ -86,7 +61,12 @@ class _DicePageState extends State<DicePage> {
               Expanded(
                 child: FlatButton(
                   onPressed: () {
-                    hasard();
+                    setState(() {
+                      leftDiceNumber = jet.getleft();
+                      rightDiceNumber = jet.getRight();
+                      checked = jet.getChoice(isSwitched);
+                      resultat = jet.getResultat();
+                    });
                   },
                   child: Image.asset('images/dice$leftDiceNumber.png'),
                 ),
@@ -94,7 +74,12 @@ class _DicePageState extends State<DicePage> {
               Expanded(
                 child: FlatButton(
                   onPressed: () {
-                    hasard();
+                    setState(() {
+                      leftDiceNumber = jet.getleft();
+                      rightDiceNumber = jet.getRight();
+                      checked = jet.getChoice(isSwitched);
+                      resultat = jet.getResultat();
+                    });
                   },
                   child: Image.asset('images/dice$rightDiceNumber.png'),
                 ),
@@ -104,17 +89,16 @@ class _DicePageState extends State<DicePage> {
           SizedBox(
             height: 50,
           ),
-          Text('Total = $total'),
-          Text(checked ? "Impaire" : "Paire"),
+          Text('Total = $resultat'),
+          //Text(jet.getChoice(checked) ? "Impaire" : "Paire"),
           SizedBox(
             height: 50,
           ),
           Row(
             children: [
               Expanded(
-                  child: Icon(ok,
-                      size: 200, color: couleurIcone) //Icon(face ? ok : pok),
-                  ),
+                child: iconeRes.getIcon(checked),
+              ) //Icon(face ? ok : pok),
             ],
           ),
         ],
