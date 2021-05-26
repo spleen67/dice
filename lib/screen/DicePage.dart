@@ -97,8 +97,10 @@ class _DicePageState extends State<DicePage> {
           Row(
             children: [
               Expanded(
-                child: iconeRes.getIcon(checked),
-              ) //Icon(face ? ok : pok),
+                child: iconeRes.getImage(checked),
+              ),
+              //child: iconeRes.getIcon(checked),
+              //Icon(face ? ok : pok),
             ],
           ),
         ],
