@@ -17,7 +17,7 @@ class _DicePageState extends State<DicePage> {
   int rightDiceNumber = 0;
   int resultat = 0;
   bool isSwitched = false; // false = paire, true = impaire
-  bool checked = false;
+  int checked = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +103,36 @@ class _DicePageState extends State<DicePage> {
               //Icon(face ? ok : pok),
             ],
           ),
+          SizedBox(
+            height: 50,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FlatButton.icon(
+                icon: Icon(Icons.file_upload),
+                label: Text("Reinitialiser"),
+                onPressed: () {
+                  _changeText();
+                },
+                color: Colors.red,
+                textColor: Colors.white,
+              ),
+            ],
+          )
         ],
       ),
     );
+  }
+
+  _changeText() {
+    print("test");
+    setState(() {
+      leftDiceNumber = 0;
+      rightDiceNumber = 0;
+      isSwitched = false;
+      resultat = 0;
+      checked = 3;
+    });
   }
 }

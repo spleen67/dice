@@ -6,7 +6,7 @@ class Lancement {
   int _leftDiceNumber;
   int _total = 0;
   bool _paire = false;
-  bool _resultat = false;
+  int _resultat = 3;
 
   int getRight() {
     return _rightDiceNumber = Random().nextInt(6) + 1;
@@ -30,17 +30,17 @@ class Lancement {
     }
   }
 
-  bool getChoice(bool choice) {
+  int getChoice(bool choice) {
     pairImpair();
     if ((choice && _paire) || (!choice && !_paire)) {
       // Si resultat OK, choix correspond a tirage
 
-      _resultat = true;
+      _resultat = 0;
       print(
           'Choix: $choice,  total : $_total, calcul res : $_paire, resutat : $_resultat');
     } else {
       // Si resultat POK, choix correspond pas au tirage
-      _resultat = false;
+      _resultat = 1;
       print(
           'Choix: $choice,  total : $_total, calcul res : $_paire, resutat : $_resultat');
     }

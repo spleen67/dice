@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'DicePage.dart';
+import 'package:toss/Lancement.dart';
+
+Lancement jet = Lancement();
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,13 +16,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('ToSs'),
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      /* floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          setState(() {
+            jet. leftDiceNumber = 0;
+            int rightDiceNumber = 0;
+          });
           print("profile");
         },
         icon: Icon(Icons.account_circle),
         label: Text("Profile"),
-      ),
+      ), */
       backgroundColor: Colors.red,
       body: DicePage(),
     );

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class IconeResultat {
-  int _appel = 0;
-
   List<Icon> _iconeRes = [
     Icon(
       Icons.check,
@@ -23,12 +21,17 @@ class IconeResultat {
 
   List<Image> _imageResultat = [
     Image.asset(
+      'images/approuve.png',
+      width: 150,
+      height: 150,
+    ),
+    Image.asset(
       'images/rejete.png',
       width: 150,
       height: 150,
     ),
     Image.asset(
-      'images/approuve.png',
+      'images/vide.png',
       width: 150,
       height: 150,
     ),
@@ -36,21 +39,19 @@ class IconeResultat {
 
   void defaut() {}
 
-  Icon getIcon(bool res) {
-    if (_appel == 0) {
-      _appel++;
+  Icon getIcon(int res) {
+    if (res == 3) {
       return _iconeRes[2];
     } else {
-      return (res ? _iconeRes[0] : _iconeRes[1]);
+      return ((res == 0) ? _iconeRes[0] : _iconeRes[1]);
     }
   }
 
-  Image getImage(bool res) {
-    if (_appel == 0) {
-      _appel++;
-      return _imageResultat[1];
+  Image getImage(int res) {
+    if (res == 3) {
+      return _imageResultat[2];
     } else {
-      return (res ? _imageResultat[1] : _imageResultat[0]);
+      return ((res == 0) ? _imageResultat[0] : _imageResultat[1]);
     }
   }
 }
